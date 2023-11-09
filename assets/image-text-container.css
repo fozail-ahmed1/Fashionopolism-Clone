@@ -1,0 +1,33 @@
+.new-section {
+  background-color: #f0f0f0; /* Set your desired background color */
+  padding: 40px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.left-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.right-section {
+  flex: 0 0 60%; /* Adjust the width of the right section as needed */
+}
+
+.right-section h2 {
+  color: #333; /* Set your desired text color */
+}
+
+.right-section p {
+  color: #666; /* Set your desired text color */
+}
+
+.button {
+  /* Add any additional styles or overrides for the button class here */
+}
