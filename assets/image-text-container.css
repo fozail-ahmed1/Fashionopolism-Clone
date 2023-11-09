@@ -1,5 +1,5 @@
 .new-section {
-  background-color: #f0f0f0; /* Set your desired background color */
+  background-color: #f0f0f0;
   padding: 40px;
 }
 
@@ -17,10 +17,7 @@
 }
 
 .right-section {
-  flex: 0 0 60%; 
-  display:flex;
-  justify-content:center;
-  align-items: flex-start;
+  flex: 0 0 70%; 
 }
 .right-section h2 {
   color: #333; 
