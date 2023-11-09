@@ -3,7 +3,8 @@
 <div class="new-section">
   <div class="container">
     <div class="left-section">
-      <img src="{{ section.settings.left_image | image_url: 'master' }}" height="500px" width="600px" alt="Left Image">
+      {% assign placeholder_svg = 'your_placeholder_svg_content' %}
+      <img src="{{ section.settings.left_image | img_url: 'master' | placeholder_svg_tag: placeholder_svg }}" height="500px" width="600px" alt="Alternate Text">
     </div>
     <div class="right-section">
       <h2>{{ section.settings.heading }}</h2>
@@ -49,7 +50,6 @@
   ],
   "presets": [
     {
-      "category": "Custom",
       "name": "Image Text Container"
     }
   ]
