@@ -17,17 +17,15 @@
 }
 
 .right-section {
-  flex: 0 0 60%; /* Adjust the width of the right section as needed */
+  flex: 0 0 60%; 
+  display:flex;
+  justify-content:center;
+  align-items: flex-start;
 }
-
 .right-section h2 {
-  color: #333; /* Set your desired text color */
+  color: #333; 
 }
 
 .right-section p {
-  color: #666; /* Set your desired text color */
-}
-
-.button {
-  /* Add any additional styles or overrides for the button class here */
+  color: #666; 
 }
