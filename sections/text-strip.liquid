@@ -1,12 +1,94 @@
+{{ 'section-text-strip.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  {% for block in section.blocks %}    
+    .heading-{{ block.id }} {
+      color: {{ block.settings.heading_color }} !important;
+    }
+  {% endfor %}
+{% endstyle %}
+
+<div class="text-strip color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="text-strip__flex">
+      {% for block in section.blocks %}      	        
+        {% if block.settings.heading_text != blank %}
+          <div class="text-strip__flexitem">
+            <h3 class="heading-{{ block.id }}">{{ block.settings.heading_text }}</h3>
+            <div>{{ block.settings.paragraph_text }}</div>
+          </div>      
+        {% endif %}        	
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Text strip",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "background-1"
+      },
+      {
+        "type": "header",
+        "content": "Section padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 52
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text-content",
+        "name": "Text content",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading_text",
+            "label": "Heading text",
+            "default": "FREE SHIPPING"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Heading color",
+            "default": "#f0f0f0"
+          },
+          {
+            "type": "richtext",
+            "id": "paragraph_text",
+            "label": "Paragraph text",
+            "default": "<p>Spend $100 and receive Free 2 day shipping.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Text strip"
+    }]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
