@@ -11,11 +11,12 @@
   <div class="page-width color-{{ section.settings.color_scheme }}">
     <div class="image-text__flex {{ section.settings.image_position }}">
      <div class="image-container">
+       <div>
         {% if section.settings.image %}
-          <picture>
-            <source srcset="{{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}">
-          </picture>
-        {% endif %}
+          <img src="{{ section.settings.image | img_url: 'medium' }}" alt="Image">
+          {% else %}
+          <img src="{{ 'referee.png' | asset_url }}" alt="Default Image">
+      {% endif %}
       </div>
 
       <div class="{{ section.settings.text_alignment }}">
