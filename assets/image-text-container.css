@@ -39,3 +39,7 @@
 .right-image {
   order: 2;
 }
+
+.btn-position{
+  position:center;
+}
