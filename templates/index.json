@@ -211,9 +211,17 @@
     "eb7effd8-c9b8-4ee2-a97c-942f6d8b964b": {
       "type": "image-text-container",
       "settings": {
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52,
         "left_image": "shopify:\/\/shop_images\/Slider2.webp",
+        "image_position": "left",
         "heading": "Shop now",
+        "caption": "New Arrivals!",
         "paragraph": "Buy in confidence with no-hassle returns.",
+        "alignment": "center",
+        "button_alignment": "center",
+        "content_alignment": "middle",
         "button_text": "Learn More",
         "button_link": ""
       }
