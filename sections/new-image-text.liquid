@@ -11,13 +11,19 @@
   <div class="page-width color-{{ section.settings.color_scheme }}">
     <div class="image-text__flex {{ section.settings.image_position }}">
      <div class="image-container">
-       <div>
-        {% if section.settings.image %}
-          <img src="{{ section.settings.image | img_url: 'medium' }}" alt="Image">
-          {% else %}
-          <img src="{{ 'referee.png' | asset_url }}" alt="Default Image">
-      {% endif %}
-      </div>
+        <div class="image-container">
+  {% if section.settings.image %}
+    <picture>
+      <source srcset="{{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}">
+      <!-- Add additional source elements if needed for different resolutions -->
+      <img src="{{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}" alt="Image">
+    </picture>
+  {% else %}
+    <img src="{{ 'placeholder-image.jpg' | asset_url | image_url }}" alt="Placeholder Image">
+    <!-- Replace 'placeholder-image.jpg' with the actual placeholder image file name and extension -->
+  {% endif %}
+</div>
+     </div>
 
       <div class="{{ section.settings.text_alignment }}">
         {% if section.settings.heading_text != blank %}
