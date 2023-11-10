@@ -1,6 +1,167 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{{ 'new-image-text.css' | asset_url |  stylesheet_tag }}
+
+{% style %}
+  .padding-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }};
+    padding-bottom: {{ section.settings.padding_bottom }};
   }
+{% endstyle %}
+
+<div class="image-text padding-{{ section.id }}">
+  <div class="page-width color-{{ section.settings.color_scheme }}">
+    <div class="image-text__flex {{ section.settings.content_position }}">
+      <div>
+        
+      </div>
+
+      <div class="{{ section.settings.text_alignment }}">
+        {% if section.settings.heading_text != blank %}
+          <h3>{{ section.settings.heading_text }}</h3>
+        {% endif %}
+        {% if section.settings.paragraph_text != blank %}
+          <div>{{ section.settings.paragraph_text }}</div>
+        {% endif %}
+        {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="button button--primary">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Image text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Content settings"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading text",
+      "default": "Heading text"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_text",
+      "label": "Paragraph text",
+      "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo est dolores error ducimus, odit et obcaecati sapiente harum autem soluta nihil, eos fugit voluptatum accusantium labore ipsa, dignissimos distinctio aliquam!</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "align-top",
+          "label": "Top"
+        },
+        {
+          "value": "align-middle",
+          "label": "Middle"
+        },
+        {
+          "value": "align-bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "align-middle"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 52
+    }
+  ],
+  "presets": [{
+    "name": "Image text"
+  }]
+}
 {% endschema %}
