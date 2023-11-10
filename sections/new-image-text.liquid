@@ -11,9 +11,13 @@
   <div class="page-width color-{{ section.settings.color_scheme }}">
     <div class="image-text__flex {{ section.settings.content_position }}">
       <div>
+        {% if section.settings.left_image %}
+        {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
+      {% else %}
         <picture>
-          <source srcset="{{ settings.image }}">
+          <source srcset="{{ 'collection-1' | placeholder_svg_tag }}">
         </picture>
+      {% endif %}
       </div>
 
       <div class="{{ section.settings.text_alignment }}">
