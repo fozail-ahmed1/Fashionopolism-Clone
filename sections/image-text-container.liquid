@@ -3,8 +3,11 @@
 <div class="new-section">
   <div class="container">
     <div class="left-section">
-      {{ 'collection-1' | placeholder_svg_tag }}
-      {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
+      {% if section.settings.left_image %}
+        {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
+      {% else %}
+        {{ 'collection-1' | placeholder_svg_tag }}
+{% endif %}
     </div>
     <div class="right-section">
       <h2>{{ section.settings.heading }}</h2>
