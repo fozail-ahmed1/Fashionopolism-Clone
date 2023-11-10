@@ -230,6 +230,7 @@
       "type": "new-image-text",
       "settings": {
         "color_scheme": "",
+        "image": "shopify:\/\/shop_images\/Slider2.webp",
         "image_position": "left",
         "heading_text": "Heading text",
         "paragraph_text": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo est dolores error ducimus, odit et obcaecati sapiente harum autem soluta nihil, eos fugit voluptatum accusantium labore ipsa, dignissimos distinctio aliquam!<\/p>",
