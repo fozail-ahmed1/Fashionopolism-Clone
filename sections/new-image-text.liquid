@@ -12,7 +12,7 @@
     <div class="image-text__flex {{ section.settings.content_position }}">
       <div>
         {% if section.settings.left_image %}
-        {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
+          {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
         {% else %}
           <picture>
             <source srcset="{{ 'collection-1' | placeholder_svg_tag }}">
