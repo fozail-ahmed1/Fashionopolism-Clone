@@ -9,7 +9,7 @@
 
 <div class="image-text padding-{{ section.id }}">
   <div class="page-width color-{{ section.settings.color_scheme }}">
-    <div class="image-text__flex {{ section.settings.content_position }}">
+    <div class="image-text__flex {{ section.settings.image_position }}">
      <div class="image-container {% if section.settings.image_position == 'right' %}right{% endif %}">
         {% if section.settings.image %}
           {{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}
