@@ -16,7 +16,7 @@
     <picture>
       <source srcset="{{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}">
       <!-- Add additional source elements if needed for different resolutions -->
-      <img src="{{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}" alt="Image">
+      <img src="{{ section.settings.image | image_url: width: 600 | image_tag: 'Image' }}" alt="Image">
     </picture>
   {% else %}
     <img src="{{ 'placeholder-image.jpg' | asset_url | image_url }}" alt="Placeholder Image">
