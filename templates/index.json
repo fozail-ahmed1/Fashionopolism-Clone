@@ -212,8 +212,8 @@
       "type": "image-text-container",
       "settings": {
         "left_image": "shopify:\/\/shop_images\/Slider2.webp",
-        "heading": "Your Heading",
-        "paragraph": "<p>Your paragraph text.<\/p>",
+        "heading": "Shop now",
+        "paragraph": "Buy in confidence with no-hassle returns.",
         "button_text": "Learn More",
         "button_link": ""
       }
