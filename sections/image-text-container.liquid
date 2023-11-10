@@ -11,12 +11,12 @@
         </picture>
       {% endif %}
     </div>
-    <div class="right-section {{ section.settings.alignment }} {{ section.settings.content_alignment }}">
-      <h2>{{ section.settings.heading }}</h2>
+    <div class="right-section {{ section.settings.content_alignment }}">
+      <h2 class="{{ section.settings.alignment }}">{{ section.settings.heading }}</h2>
       {% if section.settings.caption %}
         <p class="caption {{ section.settings.alignment }}">{{ section.settings.caption }}</p>
       {% endif %}
-      <p>{{ section.settings.paragraph }}</p>
+      <p class="{{ section.settings.alignment }}">{{ section.settings.paragraph }}</p>
       <a href="{{ section.settings.button_link }}" class="button button--primary">{{ section.settings.button_text }}</a>
     </div>
   </div>
