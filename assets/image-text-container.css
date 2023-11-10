@@ -1,6 +1,9 @@
 .new-section {
+  padding: 40px 0;
+}
+
+.background-1 {
   background-color: #f0f0f0;
-  padding: 40px;
 }
 
 .container {
@@ -12,18 +15,27 @@
 }
 
 .left-section img {
-  width:500px;
+  width: 500px;
   max-width: 100%;
   height: auto;
 }
 
 .right-section {
-  flex: 0 0 40%; 
+  flex: 0 0 40%;
 }
+
 .right-section h2 {
-  color: #333; 
+  color: #333;
 }
 
 .right-section p {
-  color: #666; 
+  color: #666;
+}
+
+.caption {
+  color: #888;
+}
+
+.right-image {
+  order: 2; /* Change order to move image to the right */
 }
