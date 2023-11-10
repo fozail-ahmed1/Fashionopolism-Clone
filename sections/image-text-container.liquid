@@ -17,7 +17,9 @@
         <p class="caption {{ section.settings.alignment }}">{{ section.settings.caption }}</p>
       {% endif %}
       <p class="{{ section.settings.alignment }}">{{ section.settings.paragraph }}</p>
-      <a href="{{ section.settings.button_link }}" class="button button--primary {{ section.settings.button_alignment }}">{{ section.settings.button_text }}</a>
+      <div class="{{ section.settings.button_alignment }}">
+        <a href="{{ section.settings.button_link }}" class="button button--primary ">{{ section.settings.button_text }}</a>
+      </div>
     </div>
   </div>
 </div>
