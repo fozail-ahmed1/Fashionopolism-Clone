@@ -12,7 +12,9 @@
     <div class="image-text__flex {{ section.settings.image_position }}">
      <div class="image-container">
         {% if section.settings.image %}
-          {{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}
+          <picture>
+            <source srcset="{{ section.settings.image | image_url: width: 800 | image_tag: 'Image' }}">
+          </picture>
         {% endif %}
       </div>
 
