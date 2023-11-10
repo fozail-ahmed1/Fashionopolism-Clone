@@ -3,13 +3,24 @@
 <div class="new-section">
   <div class="container">
     <div class="left-section">
-      {% if section.settings.left_image %}
+      <!-- {% if section.settings.left_image %}
         {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
       {% else %}
         <picture>
           <source srcset=" {{ 'collection-1' | placeholder_svg_tag }} "> 
         </picture>
-      {% endif %}
+      {% endif %} -->
+      {% if section.settings.left_image %}
+  <picture>
+    <!-- Add any additional attributes you need for the image -->
+    {{ section.settings.left_image | image_url: width: 1000 | image_tag }}
+  </picture>
+{% else %}
+  <picture>
+    <!-- Add any additional attributes you need for the placeholder -->
+    <source srcset="{{ 'collection-1' | placeholder_svg_tag }}">
+  </picture>
+{% endif %}
     </div>
     <div class="right-section">
       <h2>{{ section.settings.heading }}</h2>
