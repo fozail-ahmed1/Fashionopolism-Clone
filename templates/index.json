@@ -225,6 +225,21 @@
         "button_text": "Learn More",
         "button_link": "shopify:\/\/collections\/new-arrivals"
       }
+    },
+    "9df8f01d-cbde-4c2d-aeed-5a81393f2541": {
+      "type": "new-image-text",
+      "settings": {
+        "color_scheme": "",
+        "image_position": "left",
+        "heading_text": "Heading text",
+        "paragraph_text": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo est dolores error ducimus, odit et obcaecati sapiente harum autem soluta nihil, eos fugit voluptatum accusantium labore ipsa, dignissimos distinctio aliquam!<\/p>",
+        "button_text": "Button text",
+        "button_link": "shopify:\/\/collections\/new-arrivals",
+        "text_alignment": "left",
+        "content_position": "align-middle",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -233,6 +248,7 @@
     "featured_collection",
     "0dfa8edd-1715-4d95-af7c-ed813ec5dadb",
     "9bc90e88-1826-4802-93a4-c7b8be6f2ce7",
-    "eb7effd8-c9b8-4ee2-a97c-942f6d8b964b"
+    "eb7effd8-c9b8-4ee2-a97c-942f6d8b964b",
+    "9df8f01d-cbde-4c2d-aeed-5a81393f2541"
   ]
 }
