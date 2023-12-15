@@ -8,7 +8,7 @@ let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 // Function to display a single movie in the featured movie container
 function displayFeaturedMovie(movie) {
   const featuredMovieContent = document.createElement('div');
-  featuredMovieContent.classList.add('movie-card-content');
+  featuredMovieContent.classList.add('featured-movie-card-content');
 
   const posterPath = movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'placeholder-image-url.jpg';
 
