@@ -1,3 +1,7 @@
+{{ 'cart-assignment.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart-assignment.js' | asset_url }}" defer="defer"></script>
+
 <header>
   <input type="text" id="searchInput" placeholder="Search for a movie...">
   <button onclick="searchMovie()">Search</button>
