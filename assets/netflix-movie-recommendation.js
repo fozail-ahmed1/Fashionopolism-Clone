@@ -33,15 +33,13 @@ function createMovieCard(movie) {
   const posterPath = movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'placeholder-image-url.jpg';
 
   movieCard.innerHTML = `
-    <div class="img-and-icon">
-      <img src="${posterPath}" alt="${movie.title}" />
+    <div class="movie-card-content">
+      <img src="${posterPath}" alt="${movie.title}" class="movie-image"/>
       <button onclick="toggleFavorites(${movie.id})">Add to Favorites</button>
     </div>
     <div class="movie-title">
       <p>${movie.title}</p>
-      <ul>
-        <li></li>
-      </ul>
+      <p>${movie.genre}</p>
     </div>
   `;
   return movieCard;
