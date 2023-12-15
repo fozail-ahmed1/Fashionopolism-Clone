@@ -23,6 +23,15 @@ function displayTrendingMovies(movies) {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
   });
+  // Initialize Flickity for the recommendedContainer
+  const flickityCarousel = new Flickity('#recommended-container', {
+    cellAlign: 'left',
+    contain: true,
+    wrapAround: true,
+    pageDots: false,
+    groupCells: 4 // Display 4 movie cards in one shot
+    // Add more options as needed
+  });
 }
 
 // Function to create a movie card
@@ -90,6 +99,15 @@ function displaySearchResults(results) {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
   });
+  // Initialize Flickity for the recommendedContainer
+  const flickityCarousel = new Flickity('#recommended-container', {
+    cellAlign: 'left',
+    contain: true,
+    wrapAround: true,
+    pageDots: false,
+    groupCells: 4 // Display 4 movie cards in one shot
+    // Add more options as needed
+  });
 }
 
 // Function to toggle favorites
@@ -117,43 +135,8 @@ function updateFavoritesList() {
       .catch(error => console.error('Error:', error));
   });
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
-}
-
-// On page load, fetch trending movies and render them
-window.onload = function () {
-  fetchTrendingMovies();
-};
-
-// Function to display trending movies inside the Flickity carousel
-function displayTrendingMovies(movies) {
-  const trendingMovies = movies.map(movie => createMovieCard(movie));
-  appendToCarousel(recommendedContainer, trendingMovies);
-}
-
-// Function to display search results inside the Flickity carousel
-function displaySearchResults(results) {
-  const searchResults = results.map(movie => createMovieCard(movie));
-  appendToCarousel(recommendedContainer, searchResults);
-}
-
-// Function to display favorites list inside the Flickity carousel
-function displayFavorites() {
-  const favoriteMovies = favoritesArray.map(movieId => {
-    return fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
-      .then(response => response.json());
-  });
-
-  Promise.all(favoriteMovies)
-    .then(movies => {
-      const favoriteMovieCards = movies.map(movie => createMovieCard(movie));
-      appendToCarousel(favoritesList, favoriteMovieCards);
-    })
-    .catch(error => console.error('Error fetching favorite movies:', error));
-}
-
-// Function to append movie cards to the respective carousel
-function appendToCarousel(container, movies) {
-  const flickityCarousel = new Flickity(container, {
+  // Initialize Flickity for the favoritesList
+  const flickityCarousel = new Flickity('#favoritesList', {
     cellAlign: 'left',
     contain: true,
     wrapAround: true,
@@ -161,11 +144,10 @@ function appendToCarousel(container, movies) {
     groupCells: 4 // Display 4 movie cards in one shot
     // Add more options as needed
   });
-
-  flickityCarousel.append(movies);
 }
 
 // On page load, fetch trending movies and render them
 window.onload = function () {
   fetchTrendingMovies();
+  updateFavoritesList(); // Display favorites inside the Flickity carousel
 };
