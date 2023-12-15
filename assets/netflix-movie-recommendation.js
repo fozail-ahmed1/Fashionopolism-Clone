@@ -3,11 +3,13 @@ const searchInput = document.getElementById('searchInput');
 const recommendedContainer = document.getElementById('recommended-container');
 const favoritesList = document.getElementById('favoritesList');
 const featuredMovieContainer = document.getElementById('featuredMovie');
+const searchFeaturedContainer = document.getElementById('searchFeatured');
+const searchResultsContainer = document.getElementById('searchResults');
 let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 
 // Function to display a single movie in the featured movie container
-function displayFeaturedMovie(movie) {
-  featuredMovieContainer.innerHTML = ''; // Clear the featured movie container
+function displayFeaturedMovie(movie, container) {
+  container.innerHTML = ''; // Clear the container
 
   const featuredMovieContent = document.createElement('div');
   featuredMovieContent.classList.add('featured-movie-card-content');
@@ -23,7 +25,7 @@ function displayFeaturedMovie(movie) {
       <p class="featured-movie-genre">${movie.genre}</p>
     </div>
   `;
-  featuredMovieContainer.appendChild(featuredMovieContent);
+  container.appendChild(featuredMovieContent);
 }
 
 // Function to fetch trending movies and display the featured movie
@@ -33,7 +35,7 @@ function fetchTrendingMoviesAndDisplayFeatured() {
     .then(data => {
       // Display the first trending movie as the featured movie
       if (data.results && data.results.length > 0) {
-        displayFeaturedMovie(data.results[0]);
+        displayFeaturedMovie(data.results[0], featuredMovieContainer);
       }
       displayTrendingMovies(data.results.slice(1)); // Display remaining movies in recommended container
     })
@@ -105,22 +107,23 @@ function updateFavoritesList() {
 // Function to display search results
 function displaySearchResults(results) {
   const firstMovie = results[0]; // Retrieve the first movie from the search results
-  featuredMovieContainer.innerHTML = ''; // Clear the featured movie container
+  featuredMovieContainer.style.display = 'none'; // Hide featured movie container
+  searchResultsContainer.style.display = 'block'; // Display search results container
+  searchResultsContainer.innerHTML = ''; // Clear search results container
 
   if (firstMovie) {
-    displayFeaturedMovie(firstMovie);
+    displayFeaturedMovie(firstMovie, searchFeaturedContainer);
   } else {
-    featuredMovieContainer.innerHTML = '<p>No results found.</p>';
+    searchFeaturedContainer.innerHTML = '<p>No results found.</p>';
   }
 
-  // Display the remaining search results in the recommended movies container
-  recommendedContainer.innerHTML = '';
+  // Display the remaining search results in the search results container
   results.slice(1).forEach(movie => {
     const movieCard = createMovieCard(movie);
-    recommendedContainer.appendChild(movieCard);
+    searchResultsContainer.appendChild(movieCard);
   });
 
-  initializeFlickity('#recommended-container'); // Initialize Flickity for recommended movies container
+  initializeFlickity('#searchResults'); // Initialize Flickity for search results container
 }
 
 // Function to handle search based on user input
