@@ -78,6 +78,49 @@ function updateFavoritesList() {
   }, 1000); // Adjust the delay time if needed
 }
 
+// Function to search for movies based on user input
+function handleSearch(event) {
+  if (event.key === 'Enter') {
+    const userInput = searchInput.value.trim();
+    if (userInput !== '') {
+      searchMovies(userInput);
+      searchInput.value = ''; // Clear the search input
+    }
+  }
+}
+
+// Function to search for movies
+function searchMovies(query) {
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}`)
+    .then(response => response.json())
+    .then(data => {
+      displaySearchResults(data.results);
+    })
+    .catch(error => console.error('Error searching for movies:', error));
+}
+
+// Function to display search results
+function displaySearchResults(results) {
+  const firstMovie = results[0]; // Retrieve the first movie from the search results
+  featuredMovieContainer.innerHTML = ''; // Clear the featured movie container
+
+  if (firstMovie) {
+    const featuredMovieCard = createMovieCard(firstMovie);
+    featuredMovieContainer.appendChild(featuredMovieCard);
+  } else {
+    featuredMovieContainer.innerHTML = '<p>No results found.</p>';
+  }
+
+  // Display the remaining search results in the recommended movies container
+  recommendedContainer.innerHTML = '<h2>Recommended Movies</h2>';
+  results.slice(1).forEach(movie => {
+    const movieCard = createMovieCard(movie);
+    recommendedContainer.appendChild(movieCard);
+  });
+
+  initializeFlickity('#recommended-container');
+}
+
 // Function to initialize Flickity carousel
 function initializeFlickity(elementSelector) {
   const flickityCarousel = new Flickity(elementSelector, {
@@ -95,3 +138,6 @@ window.onload = function () {
   fetchTrendingMovies();
   updateFavoritesList();
 };
+
+// Event listener for handling search input
+searchInput.addEventListener('keypress', handleSearch);
