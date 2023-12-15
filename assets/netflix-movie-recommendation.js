@@ -141,3 +141,4 @@ window.onload = function () {
 
 // Event listener for handling search input
 searchInput.addEventListener('keypress', handleSearch);
+
