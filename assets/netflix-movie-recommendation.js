@@ -1,9 +1,8 @@
 const apiKey = '9f963d91c27a0086e7c61435322d181a';
 const searchInput = document.getElementById('searchInput');
-const movieDetails = document.getElementById('movieDetails');
-const recommendedContainer = document.getElementById('recommendedContainer');
+const recommendedContainer = document.getElementById('recommended-container');
 const favoritesList = document.getElementById('favoritesList');
-let favoritesArray = [];
+let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 
 // Function to fetch trending movies
 function fetchTrendingMovies() {
@@ -23,45 +22,29 @@ function displayTrendingMovies(movies) {
     movieCard.classList.add('movie-card');
     movieCard.innerHTML = `
       <h3>${movie.title}</h3>
-      <button onclick="addToFavorites(${movie.id})">Add to Favorites</button>
+      <button onclick="toggleFavorites(${movie.id})">Add to Favorites</button>
     `;
     recommendedContainer.appendChild(movieCard);
   });
 }
 
-// Function to fetch recommended movies based on a selected movie
-function getRecommendedMovies(movieId, genreIds) {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreIds[0]}`)
-    .then(response => response.json())
-    .then(data => {
-      const recommendedMovies = data.results.filter(movie => movie.id !== movieId);
-      displayRecommendedMovies(recommendedMovies);
-    })
-    .catch(error => console.error('Error:', error));
+// Function to search for a movie
+function searchMovie() {
+  const userInput = searchInput.value.trim();
+  // Perform a search using userInput (similar to previous examples)
+  // Display movie details and recommendations
+  // Update movieDetails and recommendedContainer as required
+  // Use fetch and manipulate DOM accordingly
 }
 
-// Function to display recommended movies
-function displayRecommendedMovies(movies) {
-  recommendedContainer.innerHTML = '<h2>Recommended Movies</h2>';
-  movies.forEach(movie => {
-    const movieCard = document.createElement('div');
-    movieCard.classList.add('movie-card');
-    movieCard.innerHTML = `
-      <h3>${movie.title}</h3>
-      <button onclick="addToFavorites(${movie.id})">Add to Favorites</button>
-    `;
-    recommendedContainer.appendChild(movieCard);
-  });
-}
-
-// Function to add movie to favorites list
-function addToFavorites(movieId) {
-  if (!favoritesArray.includes(movieId)) {
-    favoritesArray.push(movieId);
-    updateFavoritesList();
+// Function to toggle favorites
+function toggleFavorites(movieId) {
+  if (favoritesArray.includes(movieId)) {
+    favoritesArray = favoritesArray.filter(id => id !== movieId);
   } else {
-    alert('Movie already in favorites.');
+    favoritesArray.push(movieId);
   }
+  updateFavoritesList();
 }
 
 // Function to update and display favorites list
@@ -75,27 +58,16 @@ function updateFavoritesList() {
         favoriteMovie.classList.add('favorite-movie');
         favoriteMovie.innerHTML = `
           <h3>${movie.title}</h3>
-          <button onclick="removeFromFavorites(${movie.id})">Remove</button>
+          <button onclick="toggleFavorites(${movie.id})">Remove</button>
         `;
         favoritesList.appendChild(favoriteMovie);
       })
       .catch(error => console.error('Error:', error));
   });
-  // Save favorites to localStorage for persistence
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
 }
 
-// Function to remove movie from favorites list
-function removeFromFavorites(movieId) {
-  favoritesArray = favoritesArray.filter(id => id !== movieId);
-  updateFavoritesList();
-}
-
-// On page load, check for stored favorites in localStorage
+// On page load, fetch trending movies
 window.onload = function () {
-  const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-  if (storedFavorites) {
-    favoritesArray = storedFavorites;
-    updateFavoritesList();
-  }
+  fetchTrendingMovies();
 };
