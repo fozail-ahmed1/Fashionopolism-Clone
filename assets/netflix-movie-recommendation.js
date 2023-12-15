@@ -83,8 +83,6 @@ function toggleFavorites(movieId) {
 
 // Function to update and display favorites list
 function updateFavoritesList() {
-  favoritesList.innerHTML = '<h2>Favorites</h2>'; // Clear the favorites list content
-
   favoritesArray.forEach(movieId => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
       .then(response => response.json())
