@@ -112,7 +112,7 @@ function displaySearchResults(results) {
   }
 
   // Display the remaining search results in the recommended movies container
-  recommendedContainer.innerHTML = '<h2>Recommended Movies</h2>';
+  recommendedContainer.innerHTML = '';
   results.slice(1).forEach(movie => {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
@@ -141,4 +141,3 @@ window.onload = function () {
 
 // Event listener for handling search input
 searchInput.addEventListener('keypress', handleSearch);
-
