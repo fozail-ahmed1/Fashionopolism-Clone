@@ -23,9 +23,22 @@
   </div>
 
   <div class="movie-list flickity-carousel" id="favoritesList">
-    <h2>Favorites List</h2>
-    <!-- Favorites list will be populated here -->
+  <!-- Favorites list will be populated here -->
+  <div class="movie-card">
+    <!-- Movie card structure -->
+    <!-- Replace the content below with your movie cards -->
+    <div class="movie-card-content">
+      <img src="IMAGE_URL" alt="Movie Title" class="movie-image">
+      <button onclick="toggleFavorites(MOVIE_ID)">Remove</button>
+    </div>
+    <div class="movie-content">
+      <p class="movie-title">Movie Title</p>
+      <p class="movie-genre">Genre</p>
+    </div>
   </div>
+  <!-- Repeat the movie card structure for each favorite movie -->
+</div>
+
 </div>
 
 {% schema %}
