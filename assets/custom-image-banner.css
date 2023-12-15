@@ -22,3 +22,21 @@ h2.banner__heading.inline-richtext.custom-header.h1 {
 .banner__text.rte.body {
     width: 38%;
 }
+
+.banner__buttons {
+    display: block;
+    text-align: left;
+}
+
+a.button.button--primary {
+    background: #BE123C;
+    opacity: 1;
+    padding: 6px 16px 6px 16px;
+    gap: 8px;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+}
