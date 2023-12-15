@@ -13,7 +13,9 @@ function displayFeaturedMovie(movie) {
   const posterPath = movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'placeholder-image-url.jpg';
 
   featuredMovieContent.innerHTML = `
-    <img src="${posterPath}" alt="${movie.title}" class="movie-image"/>
+    <div class="featured-image">
+      <img src="${posterPath}" alt="${movie.title}" class="movie-image"/>
+    </div>
     <div class="movie-content">
       <p class="movie-title">${movie.title}</p>
       <p class="movie-genre">${movie.genre}</p>
