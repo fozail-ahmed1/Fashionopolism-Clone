@@ -54,3 +54,35 @@ img.movie-image {
     width: 25%;
     padding: 0 0px 0px 49px;
 }
+
+.featured-image {
+    width: 25%;
+    padding: 0 0px 0px 49px;
+}
+
+.featured-movie-content {}
+
+p.featured-movie-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: #191919;
+    margin-bottom: 10px;
+}
+
+p.featured-movie-genre {
+    margin: 0;
+    font-size: 13px;
+    color: red;
+}
+
+p.featured-movie-date {
+    margin: 8px 0 0px 0px;
+    font-size: 14px;
+    color: #191919;
+}
+
+p.featured-movie-details {
+    margin: 5px 322px 0px 0;
+    font-size: 14px;
+    color: #191919;
+}
