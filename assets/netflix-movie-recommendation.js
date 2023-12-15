@@ -106,7 +106,9 @@ function updateFavoritesList() {
 function displaySearchResults(results) {
   const firstMovie = results[0]; // Retrieve the first movie from the search results
   featuredMovieContainer.style.display = 'none'; // Hide featured movie container
+  searchFeaturedContainer.style.display = 'block'; // Display search featured container
   searchResultsContainer.style.display = 'block'; // Display search results container
+  recommendedContainer.style.display = 'none'; // Hide recommended movies container
   searchResultsContainer.innerHTML = ''; // Clear search results container
 
   if (firstMovie) {
@@ -129,11 +131,14 @@ function handleSearch(event) {
   if (event.key === 'Enter') {
     const userInput = searchInput.value.trim();
     if (userInput !== '') {
+      searchResultsContainer.style.display = 'none'; // Hide search results container
+      recommendedContainer.style.display = 'block'; // Display recommended movies container
       searchMovies(userInput);
       searchInput.value = ''; // Clear the search input
     }
   }
 }
+
 
 // Function to perform movie search
 function searchMovies(query) {
