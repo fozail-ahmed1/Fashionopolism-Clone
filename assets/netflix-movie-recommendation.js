@@ -22,7 +22,7 @@ function displayFeaturedMovie(movie, container) {
     </div>
     <div class="featured-movie-content">
       <p class="featured-movie-title">${movie.title}</p>
-      <p class="featured-movie-genre">${movie.genre}</p>
+      <p class="featured-movie-genre">Animation, Action, Adventure, Fantasy, Drama</p>
     </div>
   `;
   container.appendChild(featuredMovieContent);
