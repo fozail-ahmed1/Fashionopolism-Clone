@@ -4,14 +4,34 @@ const recommendedContainer = document.getElementById('recommended-container');
 const favoritesList = document.getElementById('favoritesList');
 const featuredMovieContainer = document.getElementById('featuredMovie');
 let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
-let isFirstSearch = true;
 
-// Function to fetch trending movies
-function fetchTrendingMovies() {
+// Function to display a single movie in the featured movie container
+function displayFeaturedMovie(movie) {
+  const featuredMovieContent = document.createElement('div');
+  featuredMovieContent.classList.add('movie-card-content');
+
+  const posterPath = movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'placeholder-image-url.jpg';
+
+  featuredMovieContent.innerHTML = `
+    <img src="${posterPath}" alt="${movie.title}" class="movie-image"/>
+    <div class="movie-content">
+      <p class="movie-title">${movie.title}</p>
+      <p class="movie-genre">${movie.genre}</p>
+    </div>
+  `;
+  featuredMovieContainer.appendChild(featuredMovieContent);
+}
+
+// Function to fetch trending movies and display the featured movie
+function fetchTrendingMoviesAndDisplayFeatured() {
   fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&language=en-US`)
     .then(response => response.json())
     .then(data => {
-      displayTrendingMovies(data.results);
+      // Display the first trending movie as the featured movie
+      if (data.results && data.results.length > 0) {
+        displayFeaturedMovie(data.results[0]);
+      }
+      displayTrendingMovies(data.results.slice(1)); // Display remaining movies in recommended container
     })
     .catch(error => console.error('Error fetching trending movies:', error));
 }
@@ -22,7 +42,7 @@ function displayTrendingMovies(movies) {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
   });
-  initializeFlickity('#recommended-container');
+  initializeFlickity('#recommended-container'); // Initialize Flickity for recommended movies container
 }
 
 // Function to create a movie card
@@ -73,12 +93,28 @@ function updateFavoritesList() {
 
   // Wait for a short delay to ensure elements are rendered before initializing Flickity
   setTimeout(() => {
-    initializeFlickity('#favoritesList');
+    initializeFlickity('#favoritesList'); // Initialize Flickity for favorites list container
     localStorage.setItem('favorites', JSON.stringify(favoritesArray));
   }, 1000); // Adjust the delay time if needed
 }
 
-// Function to search for movies based on user input
+// Function to display search results
+function displaySearchResults(results) {
+  featuredMovieContainer.style.display = 'none'; // Hide featured movie container
+  recommendedContainer.style.display = 'none'; // Hide recommended movies container
+  const searchResultsContainer = document.getElementById('searchResults');
+  searchResultsContainer.style.display = 'block'; // Display search results container
+
+  searchResultsContainer.innerHTML = '';
+  results.forEach(movie => {
+    const movieCard = createMovieCard(movie);
+    searchResultsContainer.appendChild(movieCard);
+  });
+
+  initializeFlickity('#searchResults'); // Initialize Flickity for search results container
+}
+
+// Function to handle search based on user input
 function handleSearch(event) {
   if (event.key === 'Enter') {
     const userInput = searchInput.value.trim();
@@ -89,7 +125,7 @@ function handleSearch(event) {
   }
 }
 
-// Function to search for movies
+// Function to perform movie search
 function searchMovies(query) {
   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${query}`)
     .then(response => response.json())
@@ -97,32 +133,6 @@ function searchMovies(query) {
       displaySearchResults(data.results);
     })
     .catch(error => console.error('Error searching for movies:', error));
-}
-
-// Function to display search results
-function displaySearchResults(results) {
-  const firstMovie = results[0]; // Retrieve the first movie from the search results
-  featuredMovieContainer.innerHTML = ''; // Clear the featured movie container
-
-  if (firstMovie) {
-    const featuredMovieCard = createMovieCard(firstMovie);
-    featuredMovieContainer.appendChild(featuredMovieCard);
-  } else {
-    featuredMovieContainer.innerHTML = '<p>No results found.</p>';
-  }
-
-  // Display the remaining search results in the recommended movies container
-  recommendedContainer.innerHTML = '';
-  results.slice(1).forEach(movie => {
-    const movieCard = createMovieCard(movie);
-    recommendedContainer.appendChild(movieCard);
-  });
-  
- // Wait for a short delay to ensure elements are rendered before initializing Flickity
-  setTimeout(() => {
-     initializeFlickity('#recommended-container');
-  }, 1000);
- 
 }
 
 // Function to initialize Flickity carousel
@@ -139,8 +149,8 @@ function initializeFlickity(elementSelector) {
 
 // On page load, fetch trending movies and render them along with favorites
 window.onload = function () {
-  fetchTrendingMovies();
-  updateFavoritesList();
+  fetchTrendingMoviesAndDisplayFeatured(); // Fetch trending movies and display the featured movie
+  updateFavoritesList(); // Update and display favorites list
 };
 
 // Event listener for handling search input
