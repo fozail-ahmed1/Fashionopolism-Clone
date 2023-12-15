@@ -119,13 +119,26 @@ function updateFavoritesList() {
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
 }
 
+// On page load, fetch trending movies and render them
+window.onload = function () {
+  fetchTrendingMovies();
+};
+
+// Function to display trending movies inside the Flickity carousel
+function displayTrendingMovies(movies) {
+  const trendingMovies = movies.map(movie => createMovieCard(movie));
+  appendToCarousel(recommendedContainer, trendingMovies);
+}
+
+// Function to display search results inside the Flickity carousel
+function displaySearchResults(results) {
+  const searchResults = results.map(movie => createMovieCard(movie));
+  appendToCarousel(recommendedContainer, searchResults);
+}
+
 // Function to display favorites list inside the Flickity carousel
 function displayFavorites() {
-  favoritesList.innerHTML = ''; // Clear the favorites list
-
-  const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-  const favoriteMovies = storedFavorites.map(movieId => {
+  const favoriteMovies = favoritesArray.map(movieId => {
     return fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
       .then(response => response.json());
   });
@@ -156,6 +169,4 @@ function appendToCarousel(container, movies) {
 // On page load, fetch trending movies and render them
 window.onload = function () {
   fetchTrendingMovies();
-  updateFavoritesList(); // Load favorites on page reload
-  displayFavorites(); // Display favorites inside the Flickity carousel
 };
