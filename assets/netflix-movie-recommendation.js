@@ -57,6 +57,8 @@ function toggleFavorites(movieId) {
 
 // Function to update and display favorites list
 function updateFavoritesList() {
+  favoritesList.innerHTML = '<h2>Favorites</h2>'; // Clear the favorites list content
+
   favoritesArray.forEach(movieId => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
       .then(response => response.json())
@@ -68,8 +70,12 @@ function updateFavoritesList() {
       })
       .catch(error => console.error('Error:', error));
   });
-  initializeFlickity('#favoritesList');
-  localStorage.setItem('favorites', JSON.stringify(favoritesArray));
+
+  // Wait for a short delay to ensure elements are rendered before initializing Flickity
+  setTimeout(() => {
+    initializeFlickity('#favoritesList');
+    localStorage.setItem('favorites', JSON.stringify(favoritesArray));
+  }, 1000); // Adjust the delay time if needed
 }
 
 // Function to initialize Flickity carousel
