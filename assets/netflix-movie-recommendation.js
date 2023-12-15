@@ -117,8 +117,12 @@ function displaySearchResults(results) {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
   });
-
-  initializeFlickity('#recommended-container');
+  
+ // Wait for a short delay to ensure elements are rendered before initializing Flickity
+  setTimeout(() => {
+     initializeFlickity('#recommended-container');
+  }, 1000);
+ 
 }
 
 // Function to initialize Flickity carousel
