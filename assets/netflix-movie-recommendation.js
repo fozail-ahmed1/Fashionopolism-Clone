@@ -16,9 +16,9 @@ function displayFeaturedMovie(movie) {
     <div class="featured-image">
       <img src="${posterPath}" alt="${movie.title}" class="movie-image"/>
     </div>
-    <div class="movie-content">
-      <p class="movie-title">${movie.title}</p>
-      <p class="movie-genre">${movie.genre}</p>
+    <div class="featured-movie-content">
+      <p class="featured-movie-title">${movie.title}</p>
+      <p class="featured-movie-genre">${movie.genre}</p>
     </div>
   `;
   featuredMovieContainer.appendChild(featuredMovieContent);
