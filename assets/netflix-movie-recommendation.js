@@ -18,7 +18,6 @@ function fetchTrendingMovies() {
 
 // Function to display trending movies
 function displayTrendingMovies(movies) {
-  // recommendedContainer.innerHTML = '<h2>Trending Movies</h2>';
   movies.forEach(movie => {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
