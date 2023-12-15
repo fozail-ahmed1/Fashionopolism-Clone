@@ -20,9 +20,20 @@ function displayTrendingMovies(movies) {
   movies.forEach(movie => {
     const movieCard = document.createElement('div');
     movieCard.classList.add('movie-card');
+    
+    const posterPath = movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'placeholder-image-url.jpg';
+    
     movieCard.innerHTML = `
-      <h3>${movie.title}</h3>
-      <button onclick="toggleFavorites(${movie.id})">Add to Favorites</button>
+      <div class="img-and-icon">
+        <img src="${posterPath}" alt="${movie.title}" />
+        <button onclick="toggleFavorites(${movie.id})">Add to Favorites</button>
+      </div>
+      <div class="movie-title">
+        <p>${movie.title}</p>
+        <ul>
+          <li></li>
+        </ul>
+      </div>
     `;
     recommendedContainer.appendChild(movieCard);
   });
@@ -56,9 +67,20 @@ function updateFavoritesList() {
       .then(movie => {
         const favoriteMovie = document.createElement('div');
         favoriteMovie.classList.add('favorite-movie');
+        
+        const posterPath = movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'placeholder-image-url.jpg';
+        
         favoriteMovie.innerHTML = `
-          <h3>${movie.title}</h3>
-          <button onclick="toggleFavorites(${movie.id})">Remove</button>
+          <div class="img-and-icon">
+            <img src="${posterPath}" alt="${movie.title}" />
+            <button onclick="toggleFavorites(${movie.id})">Remove</button>
+          </div>
+          <div class="movie-title">
+            <p>${movie.title}</p>
+            <ul>
+              <li></li>
+            </ul>
+          </div>
         `;
         favoritesList.appendChild(favoriteMovie);
       })
@@ -67,7 +89,7 @@ function updateFavoritesList() {
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
 }
 
-// On page load, fetch trending movies
+// On page load, fetch trending movies and render them
 window.onload = function () {
   fetchTrendingMovies();
 };

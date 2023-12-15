@@ -3,27 +3,23 @@
 <script src="{{ 'netflix-movie-recommendation.js' | asset_url }}" defer="defer"></script>
 
 <div class="main">
-    <div class="input-search">
-      <input type="text" id="searchInput" placeholder="Search for a movie...">
-      <button onclick="searchMovie()">Search</button>
-    </div>
-
-    <div class="featured-movie">
-      <div class="featured-image">
-        <img src="" alt="featured image">
-      </div>
-      <div class="search-movie">
-        <p class="search-movie-name"></p>
-        <p class="search-movie-genre"></p>
-        <p class="search-movie-description"></p>
-        <p class="search-movie-description"></p>
-      </div>
-    </div>
-
-    <div class="recommended" id="recommended-container">
-      <!-- Recommended movies will be populated here -->
-    </div>
+  <div class="input-search">
+    <input type="text" id="searchInput" placeholder="Search for a movie...">
+    <button onclick="searchMovie()">Search</button>
   </div>
+
+  <div class="featured-movie">
+    <!-- Featured movie content -->
+  </div>
+
+  <div class="recommended" id="recommended-container">
+    <!-- Recommended movies will be populated here -->
+  </div>
+
+  <div id="favoritesList" class="movie-list">
+    <!-- Favorites list will be populated here -->
+  </div>
+</div>
 
 {% schema %}
   {
