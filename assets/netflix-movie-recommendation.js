@@ -7,6 +7,8 @@ let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 
 // Function to display a single movie in the featured movie container
 function displayFeaturedMovie(movie) {
+  featuredMovieContainer.innerHTML = ''; // Clear the featured movie container
+
   const featuredMovieContent = document.createElement('div');
   featuredMovieContent.classList.add('featured-movie-card-content');
 
@@ -79,7 +81,7 @@ function toggleFavorites(movieId) {
 
 // Function to update and display favorites list
 function updateFavoritesList() {
-
+  favoritesList.innerHTML = '<h2>Favorites</h2>'; // Clear the favorites list content
 
   favoritesArray.forEach(movieId => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
@@ -102,18 +104,23 @@ function updateFavoritesList() {
 
 // Function to display search results
 function displaySearchResults(results) {
-  featuredMovieContainer.style.display = 'none'; // Hide featured movie container
-  recommendedContainer.style.display = 'none'; // Hide recommended movies container
-  const searchResultsContainer = document.getElementById('searchResults');
-  searchResultsContainer.style.display = 'block'; // Display search results container
+  const firstMovie = results[0]; // Retrieve the first movie from the search results
+  featuredMovieContainer.innerHTML = ''; // Clear the featured movie container
 
-  searchResultsContainer.innerHTML = '';
-  results.forEach(movie => {
+  if (firstMovie) {
+    displayFeaturedMovie(firstMovie);
+  } else {
+    featuredMovieContainer.innerHTML = '<p>No results found.</p>';
+  }
+
+  // Display the remaining search results in the recommended movies container
+  recommendedContainer.innerHTML = '';
+  results.slice(1).forEach(movie => {
     const movieCard = createMovieCard(movie);
-    searchResultsContainer.appendChild(movieCard);
+    recommendedContainer.appendChild(movieCard);
   });
 
-  initializeFlickity('#searchResults'); // Initialize Flickity for search results container
+  initializeFlickity('#recommended-container'); // Initialize Flickity for recommended movies container
 }
 
 // Function to handle search based on user input
