@@ -122,6 +122,7 @@ function updateFavoritesList() {
 // On page load, fetch trending movies and render them
 window.onload = function () {
   fetchTrendingMovies();
+  localStorage.getItem('favorites', JSON.stringify(favoritesArray));
 };
 
 // Function to display trending movies inside the Flickity carousel
