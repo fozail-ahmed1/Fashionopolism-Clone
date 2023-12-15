@@ -1,0 +1,17 @@
+/* Styles for search bar */
+.search-bar {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  padding-right: 40px; /* To accommodate space for the search icon */
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  cursor: pointer;
+}
