@@ -3,17 +3,21 @@
 <script src="{{ 'netflix-movie-recommendation.js' | asset_url }}" defer="defer"></script>
 
 <div class="main">
-  <div class="input-search">
-    <input type="text" id="searchInput" placeholder="Search for a movie...">
-    <button onclick="searchMovie()">Search</button>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="What do you want to watch?" onkeypress="handleSearch(event)">
+    <img src="search-icon.png" alt="Search" class="search-icon">
   </div>
 
-  <div class="featured-movie">
+  <div class="featured-movie" id="featuredMovie">
     <!-- Featured movie content -->
   </div>
 
   <div class="recommended" id="recommended-container">
     <!-- Recommended movies will be populated here -->
+  </div>
+
+  <div id="searchResults">
+    <!-- Search results will be displayed here -->
   </div>
 
   <div id="favoritesList" class="movie-list">
