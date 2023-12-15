@@ -22,15 +22,7 @@ function displayTrendingMovies(movies) {
     const movieCard = createMovieCard(movie);
     recommendedContainer.appendChild(movieCard);
   });
-  // Initialize Flickity for the recommendedContainer
-  const flickityCarousel = new Flickity('#recommended-container', {
-    cellAlign: 'left',
-    contain: true,
-    wrapAround: true,
-    pageDots: false,
-    groupCells: 4 // Display 4 movie cards in one shot
-    // Add more options as needed
-  });
+  initializeFlickity('#recommended-container');
 }
 
 // Function to create a movie card
@@ -51,62 +43,6 @@ function createMovieCard(movie) {
     </div>
   `;
   return movieCard;
-}
-
-// Function to handle search on pressing Enter key
-function handleSearch(event) {
-  if (event.key === 'Enter') {
-    const userInput = searchInput.value.trim();
-    if (userInput !== '') {
-      if (isFirstSearch) {
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${userInput}`)
-          .then(response => response.json())
-          .then(data => {
-            displayFirstSearchResult(data.results);
-          })
-          .catch(error => console.error('Error searching for movies:', error));
-      } else {
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${userInput}`)
-          .then(response => response.json())
-          .then(data => {
-            displaySearchResults(data.results);
-          })
-          .catch(error => console.error('Error searching for movies:', error));
-      }
-    }
-    searchInput.value = ''; // Clear the search input
-  }
-}
-
-// Function to display first search result
-function displayFirstSearchResult(results) {
-  if (results.length > 0) {
-    const firstMovie = results[0];
-    const movieCard = createMovieCard(firstMovie);
-    featuredMovieContainer.innerHTML = '';
-    featuredMovieContainer.appendChild(movieCard);
-    isFirstSearch = false;
-  } else {
-    featuredMovieContainer.innerHTML = '<p>No results found.</p>';
-  }
-}
-
-// Function to display search results
-function displaySearchResults(results) {
-  recommendedContainer.innerHTML = '<h2>Search Results</h2>';
-  results.forEach(movie => {
-    const movieCard = createMovieCard(movie);
-    recommendedContainer.appendChild(movieCard);
-  });
-  // Initialize Flickity for the recommendedContainer
-  const flickityCarousel = new Flickity('#recommended-container', {
-    cellAlign: 'left',
-    contain: true,
-    wrapAround: true,
-    pageDots: false,
-    groupCells: 4 // Display 4 movie cards in one shot
-    // Add more options as needed
-  });
 }
 
 // Function to toggle favorites
@@ -130,24 +66,27 @@ function updateFavoritesList() {
         favoriteMovie.querySelector('button').textContent = 'Remove';
         favoriteMovie.querySelector('button').setAttribute('onclick', `toggleFavorites(${movie.id})`);
         favoritesList.appendChild(favoriteMovie);
-
-        // Initialize Flickity for the favoritesList after content is added
-        const flickityCarousel = new Flickity('#favoritesList', {
-          cellAlign: 'left',
-          contain: true,
-          wrapAround: true,
-          pageDots: false,
-          groupCells: 4 // Display 4 movie cards in one shot
-          // Add more options as needed
-        });
       })
       .catch(error => console.error('Error:', error));
   });
+  initializeFlickity('#favoritesList');
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
 }
 
-// On page load, fetch trending movies and render them
+// Function to initialize Flickity carousel
+function initializeFlickity(elementSelector) {
+  const flickityCarousel = new Flickity(elementSelector, {
+    cellAlign: 'left',
+    contain: true,
+    wrapAround: true,
+    pageDots: false,
+    groupCells: 4 // Display 4 movie cards in one shot
+    // Add more options as needed
+  });
+}
+
+// On page load, fetch trending movies and render them along with favorites
 window.onload = function () {
   fetchTrendingMovies();
-  updateFavoritesList(); // Display favorites inside the Flickity carousel
+  updateFavoritesList();
 };
