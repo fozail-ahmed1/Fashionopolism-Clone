@@ -8,30 +8,30 @@
     <img src="search-icon.png" alt="Search" class="search-icon" width="32px" height="32px">
   </div>
 
-  <div class="featured-movie" id="featuredMovie">
+  <div class="featured-movie flickity-carousel" id="featuredMovie">
     <!-- Featured movie content -->
   </div>
 
-  <div class="recommended" id="recommended-container">
+  <div class="recommended flickity-carousel" id="recommended-container">
     <!-- Recommended movies will be populated here -->
   </div>
 
-  <div id="searchResults">
+  <div class="flickity-carousel" id="searchResults">
     <!-- Search results will be displayed here -->
   </div>
 
-  <div id="favoritesList" class="movie-list">
+  <div class="movie-list flickity-carousel" id="favoritesList">
     <!-- Favorites list will be populated here -->
   </div>
 </div>
 
 {% schema %}
-  {
+{
   "name": "Netflix Movie Section",
   "tag":"section",
   "settings": [
   ],
-    "presets": [{
+  "presets": [{
     "name": "Netflix Movie section"
   }]
 }
