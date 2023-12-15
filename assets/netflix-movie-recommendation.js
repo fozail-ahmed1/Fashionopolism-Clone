@@ -158,15 +158,4 @@ window.onload = function () {
   fetchTrendingMovies();
   updateFavoritesList(); // Load favorites on page reload
   displayFavorites(); // Display favorites inside the Flickity carousel
-
-  // Initialize Flickity for the favoritesList container
-  const favoritesCarousel = new Flickity('#favoritesList', {
-    cellAlign: 'left',
-    contain: true,
-    wrapAround: true,
-    prevNextButtons: false,
-    pageDots: false,
-    groupCells: 4 // Display 4 movie cards in one shot
-    // Add more options as needed
-  });
 };
