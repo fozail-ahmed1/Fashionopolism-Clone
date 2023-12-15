@@ -28,7 +28,7 @@ h2.banner__heading.inline-richtext.custom-header.h1 {
     text-align: left;
 }
 
-a.button.button--primary {
+a.button.button--primary.button-custom {
     background: #BE123C;
     opacity: 1;
     padding: 6px 16px 6px 16px;
