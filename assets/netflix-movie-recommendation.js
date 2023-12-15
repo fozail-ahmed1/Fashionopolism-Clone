@@ -126,22 +126,49 @@ window.onload = function () {
   fetchTrendingMovies();
 };
 
-// Function to initialize Flickity for specified elements
-function initializeFlickity() {
-  const carouselElements = document.querySelectorAll('.flickity-carousel');
-
-  carouselElements.forEach(element => {
-    new Flickity(element, {
-      cellAlign: 'left',
-      contain: true,
-      wrapAround: true,
-      prevNextButtons: false,
-      pageDots: false,
-      groupCells: 4 // Display 4 movie cards in one shot
-      // Add more options as needed
-    });
-  });
+// Function to display trending movies inside the Flickity carousel
+function displayTrendingMovies(movies) {
+  const trendingMovies = movies.map(movie => createMovieCard(movie));
+  appendToCarousel(recommendedContainer, trendingMovies);
 }
 
-// Call the initializeFlickity function after the content is loaded
-document.addEventListener('DOMContentLoaded', initializeFlickity);
+// Function to display search results inside the Flickity carousel
+function displaySearchResults(results) {
+  const searchResults = results.map(movie => createMovieCard(movie));
+  appendToCarousel(recommendedContainer, searchResults);
+}
+
+// Function to display favorites list inside the Flickity carousel
+function displayFavorites() {
+  const favoriteMovies = favoritesArray.map(movieId => {
+    return fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
+      .then(response => response.json());
+  });
+
+  Promise.all(favoriteMovies)
+    .then(movies => {
+      const favoriteMovieCards = movies.map(movie => createMovieCard(movie));
+      appendToCarousel(favoritesList, favoriteMovieCards);
+    })
+    .catch(error => console.error('Error fetching favorite movies:', error));
+}
+
+// Function to append movie cards to the respective carousel
+function appendToCarousel(container, movies) {
+  const flickityCarousel = new Flickity(container, {
+    cellAlign: 'left',
+    contain: true,
+    wrapAround: true,
+    prevNextButtons: false,
+    pageDots: false,
+    groupCells: 4 // Display 4 movie cards in one shot
+    // Add more options as needed
+  });
+
+  flickityCarousel.append(movies);
+}
+
+// On page load, fetch trending movies and render them
+window.onload = function () {
+  fetchTrendingMovies();
+};
