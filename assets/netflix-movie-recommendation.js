@@ -157,7 +157,6 @@ function appendToCarousel(container, movies) {
     cellAlign: 'left',
     contain: true,
     wrapAround: true,
-    prevNextButtons: false,
     pageDots: false,
     groupCells: 4 // Display 4 movie cards in one shot
     // Add more options as needed
