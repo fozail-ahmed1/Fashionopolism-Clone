@@ -2,7 +2,9 @@ const apiKey = '9f963d91c27a0086e7c61435322d181a';
 const searchInput = document.getElementById('searchInput');
 const recommendedContainer = document.getElementById('recommended-container');
 const favoritesList = document.getElementById('favoritesList');
+const featuredMovieContainer = document.getElementById('featuredMovie');
 let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
+let isFirstSearch = true;
 
 // Function to fetch trending movies
 function fetchTrendingMovies() {
@@ -45,27 +47,51 @@ function createMovieCard(movie) {
   return movieCard;
 }
 
-// Function to search for a movie
-function searchMovie() {
-  const userInput = searchInput.value.trim();
-  if (userInput !== '') {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${userInput}`)
-      .then(response => response.json())
-      .then(data => {
-        recommendedContainer.innerHTML = '<h2>Search Results</h2>';
-        if (data.results.length === 0) {
-          recommendedContainer.innerHTML = '<p>No results found.</p>';
-        } else {
-          data.results.forEach(movie => {
-            const movieCard = createMovieCard(movie);
-            recommendedContainer.appendChild(movieCard);
-          });
-        }
-      })
-      .catch(error => console.error('Error searching for movies:', error));
-  } else {
-    fetchTrendingMovies(); // If the search input is empty, display trending movies
+// Function to handle search on pressing Enter key
+function handleSearch(event) {
+  if (event.key === 'Enter') {
+    const userInput = searchInput.value.trim();
+    if (userInput !== '') {
+      if (isFirstSearch) {
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${userInput}`)
+          .then(response => response.json())
+          .then(data => {
+            displayFirstSearchResult(data.results);
+          })
+          .catch(error => console.error('Error searching for movies:', error));
+      } else {
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${userInput}`)
+          .then(response => response.json())
+          .then(data => {
+            displaySearchResults(data.results);
+          })
+          .catch(error => console.error('Error searching for movies:', error));
+      }
+    }
+    searchInput.value = ''; // Clear the search input
   }
+}
+
+// Function to display first search result
+function displayFirstSearchResult(results) {
+  if (results.length > 0) {
+    const firstMovie = results[0];
+    const movieCard = createMovieCard(firstMovie);
+    featuredMovieContainer.innerHTML = '';
+    featuredMovieContainer.appendChild(movieCard);
+    isFirstSearch = false;
+  } else {
+    featuredMovieContainer.innerHTML = '<p>No results found.</p>';
+  }
+}
+
+// Function to display search results
+function displaySearchResults(results) {
+  recommendedContainer.innerHTML = '<h2>Search Results</h2>';
+  results.forEach(movie => {
+    const movieCard = createMovieCard(movie);
+    recommendedContainer.appendChild(movieCard);
+  });
 }
 
 // Function to toggle favorites
