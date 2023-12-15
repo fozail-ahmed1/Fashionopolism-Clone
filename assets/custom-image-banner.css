@@ -6,3 +6,15 @@ h2.banner__heading.inline-richtext.h1 {
   line-height: 58px;
   text-align: left;
 }
+
+.banner__text.rte.body p {
+    font-family: DM Sans, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #fff;
+    text-align: left;
+}
+
+.banner__text.rte.body {
+    width: 38%;
+}
