@@ -104,24 +104,24 @@ function toggleFavorites(movieId) {
 
 // Function to update and display favorites list
 function updateFavoritesList() {
-  favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
   favoritesList.innerHTML = '<h2>Favorites</h2>';
-  const favoriteMovies = favoritesArray.map(movieId => {
-    return fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
-      .then(response => response.json());
+  favoritesArray.forEach(movieId => {
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
+      .then(response => response.json())
+      .then(movie => {
+        const favoriteMovie = createMovieCard(movie);
+        favoriteMovie.querySelector('button').textContent = 'Remove';
+        favoriteMovie.querySelector('button').setAttribute('onclick', `toggleFavorites(${movie.id})`);
+        favoritesList.appendChild(favoriteMovie);
+      })
+      .catch(error => console.error('Error:', error));
   });
-
-  Promise.all(favoriteMovies)
-    .then(movies => {
-      const favoriteMovieCards = movies.map(movie => createMovieCard(movie));
-      appendToCarousel(favoritesList, favoriteMovieCards); // Append favorites to the Flickity slider
-    })
-    .catch(error => console.error('Error fetching favorite movies:', error));
+  localStorage.setItem('favorites', JSON.stringify(favoritesArray));
 }
 
+// On page load, fetch trending movies and render them
 window.onload = function () {
   fetchTrendingMovies();
-  updateFavoritesList(); // Load favorites on page reload
 };
 
 // Function to display trending movies inside the Flickity carousel
