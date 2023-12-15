@@ -69,11 +69,17 @@
         "stack_images_on_mobile": true,
         "show_text_below": true
       }
+    },
+    "17952d96-0627-4691-ac28-148a9776ddd3": {
+      "type": "netflix-movie-recommendation",
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
     "form",
-    "92367c40-9463-4495-8cd4-84d9bb111423"
+    "92367c40-9463-4495-8cd4-84d9bb111423",
+    "17952d96-0627-4691-ac28-148a9776ddd3"
   ]
 }
