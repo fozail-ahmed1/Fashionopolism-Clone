@@ -130,19 +130,20 @@ function updateFavoritesList() {
         favoriteMovie.querySelector('button').textContent = 'Remove';
         favoriteMovie.querySelector('button').setAttribute('onclick', `toggleFavorites(${movie.id})`);
         favoritesList.appendChild(favoriteMovie);
+
+        // Initialize Flickity for the favoritesList after content is added
+        const flickityCarousel = new Flickity('#favoritesList', {
+          cellAlign: 'left',
+          contain: true,
+          wrapAround: true,
+          pageDots: false,
+          groupCells: 4 // Display 4 movie cards in one shot
+          // Add more options as needed
+        });
       })
       .catch(error => console.error('Error:', error));
   });
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
-  // Initialize Flickity for the favoritesList
-  const flickityCarousel = new Flickity('#favoritesList', {
-    cellAlign: 'left',
-    contain: true,
-    wrapAround: true,
-    pageDots: false,
-    groupCells: 4 // Display 4 movie cards in one shot
-    // Add more options as needed
-  });
 }
 
 // On page load, fetch trending movies and render them
