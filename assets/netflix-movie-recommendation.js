@@ -144,6 +144,4 @@ function initializeFlickity() {
 }
 
 // Call the initializeFlickity function after the content is loaded
-window.addEventListener('DOMContentLoaded', () => {
-  initializeFlickity();
-});
+document.addEventListener('DOMContentLoaded', initializeFlickity);
