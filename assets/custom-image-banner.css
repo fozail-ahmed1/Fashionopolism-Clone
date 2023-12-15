@@ -1,3 +1,7 @@
+.banner__box.content-container.content-container--full-width-mobile.color-background-1.gradient {
+    background: #ffffff00;
+}
+
 h2.banner__heading.inline-richtext.custom-header.h1 {
   font-family: DM Sans, sans-serif;
   color: #fff;
