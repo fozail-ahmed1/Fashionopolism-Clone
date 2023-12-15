@@ -53,6 +53,9 @@
         "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-text-1",
         "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-buttons-1"
       ],
+      "custom_css": [
+
+      ],
       "settings": {
         "image": "shopify:\/\/shop_images\/Posterwick.jpg",
         "image_overlay_opacity": 0,
