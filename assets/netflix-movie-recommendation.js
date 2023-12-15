@@ -6,19 +6,6 @@ const featuredMovieContainer = document.getElementById('featuredMovie');
 let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 let isFirstSearch = true;
 
-// Function to handle search on pressing Enter key
-function handleSearch(event) {
-  if (event.key === 'Enter') {
-    // Add your search logic here
-    console.log('Search function triggered');
-    // Example: Get the value from the search input
-    const userInput = searchInput.value.trim();
-    if (userInput !== '') {
-      // Perform search or other actions here
-    }
-    searchInput.value = ''; // Clear the search input
-  }
-}
 // Function to fetch trending movies
 function fetchTrendingMovies() {
   fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&language=en-US`)
