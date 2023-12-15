@@ -18,10 +18,59 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "92367c40-9463-4495-8cd4-84d9bb111423": {
+      "type": "image-banner",
+      "blocks": {
+        "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "John Wick 3 : Parabellum",
+            "heading_size": "h1"
+          }
+        },
+        "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "John Wick is on the run after killing a member of the international assassins' guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.",
+            "text_style": "body"
+          }
+        },
+        "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-buttons-1": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Watch Trailer",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-heading-1",
+        "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-text-1",
+        "template--16021285241013__92367c40-9463-4495-8cd4-84d9bb111423-buttons-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Posterwick.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
     }
   },
   "order": [
     "main",
-    "form"
+    "form",
+    "92367c40-9463-4495-8cd4-84d9bb111423"
   ]
 }
