@@ -37,9 +37,9 @@ function createMovieCard(movie) {
       <img src="${posterPath}" alt="${movie.title}" class="movie-image"/>
       <button onclick="toggleFavorites(${movie.id})">Add to Favorites</button>
     </div>
-    <div class="movie-title">
-      <p>${movie.title}</p>
-      <p>${movie.genre}</p>
+    <div class="movie-content">
+      <p class="movie-title">${movie.title}</p>
+      <p class="movie-genre">${movie.genre}</p>
     </div>
   `;
   return movieCard;
