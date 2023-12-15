@@ -105,17 +105,17 @@ function toggleFavorites(movieId) {
 // Function to update and display favorites list
 function updateFavoritesList() {
   favoritesList.innerHTML = '<h2>Favorites</h2>';
-  favoritesArray.forEach(movieId => {
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
-      .then(response => response.json())
-      .then(movie => {
-        const favoriteMovie = createMovieCard(movie);
-        favoriteMovie.querySelector('button').textContent = 'Remove';
-        favoriteMovie.querySelector('button').setAttribute('onclick', `toggleFavorites(${movie.id})`);
-        favoritesList.appendChild(favoriteMovie);
-      })
-      .catch(error => console.error('Error:', error));
+  const favoriteMovies = favoritesArray.map(movieId => {
+    return fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
+      .then(response => response.json());
   });
+
+  Promise.all(favoriteMovies)
+    .then(movies => {
+      const favoriteMovieCards = movies.map(movie => createMovieCard(movie));
+      appendToCarousel(favoritesList, favoriteMovieCards); // Append favorites to the Flickity slider
+    })
+    .catch(error => console.error('Error fetching favorite movies:', error));
   localStorage.setItem('favorites', JSON.stringify(favoritesArray));
 }
 
