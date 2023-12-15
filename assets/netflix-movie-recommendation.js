@@ -23,9 +23,10 @@ function displayFeaturedMovie(movie, container) {
     <div class="featured-movie-content">
       <p class="featured-movie-title">${movie.title}</p>
       <p class="featured-movie-genre">Animation, Action, Adventure, Fantasy, Drama</p>
-      <p>Release Date: 12/08/2000 \n
-In 1970s London amidst the punk rock revolution, a young grifter named Estella is determined to make a name for herself with her designs. \n
- She befriends a pair of young thieves who appreciate her appetite for mischief, and together they are able to build a life for themselves on the London streets.</p>
+      <p class="featured-movie-date">Release Date: 12/08/2000 </p>
+      <p class="featured-movie-details">In 1970s London amidst the punk rock revolution, a young grifter named Estella is determined to make a name for herself with her designs.</p>
+      <p class="featured-movie-details">She befriends a pair of young thieves who appreciate her appetite for mischief, and together they are able to build a life for themselves on the London streets.</p>
+
     </div>
   `;
   container.appendChild(featuredMovieContent);
