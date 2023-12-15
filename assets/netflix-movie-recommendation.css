@@ -1,7 +1,10 @@
 /* Styles for search bar */
 .search-bar {
-  position: relative;
-  margin-bottom: 20px;
+    position: relative;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #searchInput {
@@ -9,9 +12,8 @@
 }
 
 .search-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-  cursor: pointer;
+    position: absolute;
+    top: 0;
+    transform: translate(300%, 0%);
+    cursor: pointer;
 }
