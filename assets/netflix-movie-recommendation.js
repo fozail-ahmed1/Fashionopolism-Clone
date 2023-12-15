@@ -65,7 +65,7 @@ function createMovieCard(movie) {
     </div>
     <div class="movie-content">
       <p class="movie-title">${movie.title}</p>
-      <p class="movie-genre">${movie.genre}</p>
+      <p class="movie-genre">Animation, Action, Adventure, Fantasy, Drama</p>
     </div>
   `;
   return movieCard;
