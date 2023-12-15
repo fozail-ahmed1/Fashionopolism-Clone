@@ -125,3 +125,25 @@ function updateFavoritesList() {
 window.onload = function () {
   fetchTrendingMovies();
 };
+
+// Function to initialize Flickity for specified elements
+function initializeFlickity() {
+  const carouselElements = document.querySelectorAll('.flickity-carousel');
+
+  carouselElements.forEach(element => {
+    new Flickity(element, {
+      cellAlign: 'left',
+      contain: true,
+      wrapAround: true,
+      prevNextButtons: false,
+      pageDots: false,
+      groupCells: 4 // Display 4 movie cards in one shot
+      // Add more options as needed
+    });
+  });
+}
+
+// Call the initializeFlickity function after the content is loaded
+window.addEventListener('DOMContentLoaded', () => {
+  initializeFlickity();
+});
